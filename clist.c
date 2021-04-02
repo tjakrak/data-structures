@@ -85,11 +85,9 @@ void *clist_get(struct clist *list, size_t idx) {
     {
         return NULL;
     } 
-    // mod idx
-    size_t real_idx = idx % list->capacity;
+    // getting the idx. (0 element would be list->insertions
+    size_t real_idx = (list->insertions + idx) % list->capacity;
 
-    // first we goes from element storage
-    // increment on element storage
     return list->element_storage + real_idx * list->item_sz;
 }
 
